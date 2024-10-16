@@ -1,0 +1,42 @@
+<section class="home p-6 bg-gray-100 min-h-screen">
+  <h2 class="text-3xl font-bold text-center mb-6">Rechercher par catégorie</h2>
+  <p class="text-center mb-6">Trouvez des quiz par catégorie</p>
+
+  <form class="home_form flex flex-col items-center mb-6">
+    <label for="name" class="mb-2 text-lg">Catégories</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      placeholder="Rechercher une catégorie"
+      [(ngModel)]="searchedCategory"
+      class="p-2 border border-gray-300 rounded mb-4 w-full max-w-md"
+      required
+    />
+    <div class="flex space-x-4">
+      <button
+        class="home_quiz-btn btn--outline bg-blue-500 text-white py-2 px-4 rounded"
+        (click)="onSearch()"
+      >
+        Rechercher
+      </button>
+      <button
+        class="home_quiz-btn btn--outline bg-red-500 text-white py-2 px-4 rounded"
+        (click)="resetSearch()"
+      >
+        Reset
+      </button>
+    </div>
+  </form>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div
+      *ngFor="let category of categoriesFiltered"
+      class="card bg-white shadow-md rounded-lg p-6 cursor-pointer"
+      [routerLink]="['/quiz', username, category.id]"
+    >
+      <h3 class="text-2xl font-bold mb-2">{{ category.name }}</h3>
+      <p class="text-gray-700">{{ category.description }}</p>
+    </div>
+  </div>
+</section>
